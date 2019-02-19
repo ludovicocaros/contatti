@@ -1,27 +1,49 @@
-<form [formGroup]="mioForm">
+<div>
+<form class="modulo" [formGroup]="mioForm">
 
   <mat-form-field class="example-full-width">
-    <input matInput  placeholder="Nome"formControlName="nome">
+    <input matInput  placeholder="Nome" formControlName="nome">
   </mat-form-field>
+    <span *ngIf="nome.invalid && (nome.dirty||nome.touched)">
+    <span *ngIf="nome.errors.required">Inserisci nome</span>
+    <span *ngIf="nome.errors.minlength">Scrivi almeno 2 caratteri</span></span>
+ 
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Cognome" formControlName="cognome" >
+    <input matInput placeholder="Cognome" formControlName="cognome" > 
   </mat-form-field>
+    <span *ngIf="cognome.invalid && (cognome.dirty || nome.touched)">
+    <span *ngIf="cognome.errors.required">Inserisci cognome</span>
+    <span *ngIf="cognome.errors.minlength">Scrivi almeno 2 caratteri</span></span>
+ 
 
    <mat-form-field class="example-full-width">
     <input matInput  placeholder="Citta" formControlName="citta">
   </mat-form-field>
+    <span *ngIf="citta.invalid && (citta.dirty || citta.touched)">
+    <span *ngIf="citta.errors.required">Inserisci citta</span>
+    <span *ngIf="citta.errors.minlength">Scrivi almeno 2 caratteri</span></span>
+  
+  <mat-form-field class="example-full-width">
+    <input matInput  placeholder="Email" formControlName="email">
+  </mat-form-field>
+    <span *ngIf="email.invalid && (email.dirty || email.touched)">
+    <span *ngIf="email.errors.required">Inserisci email</span>
+    <span *ngIf="email.errors.email">Inserisci email corretta</span></span>
+
+
 
   <mat-form-field>
-  <input matInput [matDatepicker]="picker" placeholder="Scegli la data">
+  <input type="date" matInput [matDatepicker]="picker" placeholder="Scegli la data">
+</mat-form-field>
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
 
 
+
+</form>
+</div>
 <h2>Risultato in tempo reale:</h2>
 <p>Nome inserito:{{this.mioForm.value.nome}}</p>
 <p>Cognome inserito:{{this.mioForm.value.cognome}}</p>
 <p>Citta inserita:{{this.mioForm.value.citta}}</p>
-
-</form>
